@@ -1,0 +1,315 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, h5, h6{
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  section{
+    padding: 60px, 0;
+    overflow: hidden;
+  }
+
+  .main-dashboard{
+    display: flex;
+  }
+
+  .left-navigation{
+    width: 20%;
+    border-right: 2px solid;
+    background-color: rgba(79, 157, 218, 0.25);
+  }
+
+  .pharmacy-name{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 250px;
+    padding: 10px;
+    margin: 15px;
+    margin-top: 30px;
+  }
+
+  .dashboard-button{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 45px;
+    margin-left: 15px;
+  }
+
+  .manage-staffs{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  .manage-users{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  .manage-products{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  .admin-profile{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  .logout{
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(79, 157, 218, 0.25);
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 15px;
+  }
+
+  .nav-buttons{
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    background: none;
+  }
+
+  .button-links{
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .button-links:hover{
+    text-decoration: none;
+    color: #4d5df3;
+  }
+
+  .button-links:active{
+    color: #000000;
+  }
+
+  .content{
+    flex-grow: 1;
+  }
+
+  .left-navigation, .content{
+    align-self: flex-start;
+  }
+
+  .left-navigation, .content{
+    min-height: 100vh;
+  }
+
+  .content-header{
+    border-radius: 5px;
+    font-size: 35px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 15px;
+    margin-top: 25px;
+  }
+
+  .add-staff-btn{
+    background-color: rgba(79, 157, 218, 0.25);
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 150px;
+    height: 35px;
+    margin-left: 1010px;
+  }
+
+  .add-staff-btn:hover{
+    background-color: rgba(0, 145, 255, 0.25);
+    color: #3f3f3f;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    width: 780px;
+    height: 700px;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .form-head{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 32px;
+    margin-left: 17px;
+    margin-top: 20px;
+  }
+  
+  .body-no-scroll {
+    overflow: hidden;
+  }
+
+  .modal-name-input100{
+    display: inline-block;
+    width: 30%;
+    margin-top: 10px;
+    margin-right: 1.5%;
+  }
+
+  .modal-wrap-input100{
+    width: 100%;
+    margin: 15px;
+    position: relative;
+  }
+
+  .modal-label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    text-align: left;
+    margin-left: 5px;
+    display: block;
+  }
+
+  .modal-name-label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 20px;
+    display: block;
+  }
+
+  .modal-lname-label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 17px;
+    display: block;
+  }
+
+  .modal-input100{
+    width: 675px;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    margin-left: 5px;
+    height: 45px;
+    background: transparent;
+    padding: 0 6px 0 0px;
+  }
+
+  .modal-n-input100{
+    width: 200px;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    height: 40px;
+    background: transparent;
+    margin-left: 20px;
+    padding: 0 6px 0 0px;
+  }
+
+  .modal-ln-input100{
+    width: 210px;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    height: 40px;
+    background: transparent;
+    margin-left: 17px;
+    padding: 0 6px 0 0px;
+  }
+
+  .create-staff{
+    font-family: 'Ubuntu', sans-serif;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left: 240px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .create-staff:hover{
+    background-color: rgba(79, 157, 218, 0.25);
+  }
+  
+  table {
+    width: 1150px;
+    margin-left: 15px;
+    margin-top: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+      border: 1px solid #ddd;
+  }
+
+  th, td {
+      text-align: left;
+      padding: 8px;
+  }
+
+  th {
+      background-color: #f2f2f2;
+  }

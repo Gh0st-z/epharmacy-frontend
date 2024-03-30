@@ -1,0 +1,402 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, h5, h6{
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  section{
+    padding: 60px, 0;
+    overflow: hidden;
+  }
+  
+  #main {
+    background-image: url('../images/bg01.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%;
+  }
+  
+  #main::before {
+    content: "";
+    background-image: url('../images/bg01.jpg');
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .login-form {
+    background-color: rgba(126, 187, 176, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+    width: 550px;
+  }
+
+  #wb{
+    margin: 25px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .wrap-input100 {
+    width: 100%;
+    margin: 15px;
+    position: relative;
+  }
+  
+  .label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 5px;
+    margin-top: 17px;
+    text-align: left;
+    display: block;
+  }
+  
+  .input100{
+    width: 575px;
+    border: none;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    height: 55px;
+    background: transparent;
+    padding: 0 6px 0 43px;
+  }
+  
+  .input100:focus {
+    border-color: #7EBBB0;
+  }
+
+  .input100:focus::placeholder {
+    color:transparent;
+  }
+  
+  .focus-input100 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .focus-input100::after {
+    content: attr(data-symbol);
+    font-family: Material-Design-Iconic-Font;
+    color: #8d908e;
+    font-size: 22px;
+  
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: calc(100% - 20px);
+    bottom: 0;
+    left: 0;
+    padding-left: 13px;
+    padding-top: 3px;
+  }
+  
+  .focus-input100::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  
+  .input100:focus + .focus-input100::before {
+    width: 365px;
+  }
+  
+  .has-val.input100 + .focus-input100::before {
+    width: 365px;
+  }
+  
+  .input100:focus + .focus-input100::after {
+    color: #7EBBB0;
+  }
+  
+  .has-val.input100 + .focus-input100::after {
+    color: #7EBBB0;
+  }
+  
+  #for-pass{
+    text-align: right;
+    display: block;
+    margin-right: 20px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .login-btn{
+    font-family: 'Ubuntu', sans-serif;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .login-btn:hover {
+    background-color: #7EBBB0;
+    border: 2px solid #070807;
+    color: #ffffff;
+  }
+  
+  #account{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+  }
+  
+  #create-acc{
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .toast-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #loginlink{
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+/* Even smaller screen adjustments */
+@media (max-width: 480px) {
+  #main {
+    background-image: url('../images/bg-01.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%;
+  }
+  
+  #main::before {
+    content: "";
+    background-image: url('../images/bg-01.jpg');
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .login-form {
+    background-color: rgba(206, 227, 245, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+    width: 390px;
+  }
+
+  #wb{
+    margin: 25px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .wrap-input100 {
+    width: 50px;
+    margin: 5px;
+    position: relative;
+  }
+  
+  .label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    text-align: left;
+    display: block;
+  }
+  
+  .input100{
+    width: 50px;
+    border: none;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    height: 55px;
+    background: transparent;
+    padding: 0 6px 0 43px;
+  }
+  
+  .input100:focus {
+    border-color: #7EBBB0;
+  }
+  
+  .focus-input100 {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .focus-input100::after {
+    content: attr(data-symbol);
+    font-family: Material-Design-Iconic-Font;
+    color: #8d908e;
+    font-size: 22px;
+  
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: calc(100% - 20px);
+    bottom: 0;
+    left: 0;
+    padding-left: 13px;
+    padding-top: 3px;
+  }
+  
+  .focus-input100::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  
+  .input100:focus + .focus-input100::before {
+    width: 50px;
+  }
+  
+  .has-val.input100 + .focus-input100::before {
+    width: 50px;
+  }
+  
+  .input100:focus + .focus-input100::after {
+    color: #7EBBB0;
+  }
+  
+  .has-val.input100 + .focus-input100::after {
+    color: #7EBBB0;
+  }
+  
+  #for-pass{
+    text-align: right;
+    display: block;
+    margin-right: 20px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .login-btn{
+    font-family: 'Ubuntu', sans-serif;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .login-btn:hover {
+    background-color: #7EBBB0;
+    border: 2px solid #070807;
+    color: #ffffff;
+  }
+  
+  #account{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+  }
+  
+  #create-acc{
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .toast-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .separator-line {
+    flex: 1;
+    border-top: 1px solid;
+  }
+  
+  .separator-text {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0 10px;
+    color: #070807;
+  }
+  
+  #xtra-sign-in{
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    display: block;
+    margin-left: 7px;
+  }
+
+  #loginlink{
+    font-family: 'Ubuntu', sans-serif;
+  }
+}
