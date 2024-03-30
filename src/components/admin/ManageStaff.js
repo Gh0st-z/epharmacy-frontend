@@ -187,6 +187,10 @@ function ManageStaffs(){
 
   const [staffs, setStaffs] = useState([]);
 
+  const [fullHeight, setFullHeight] = useState(window.innerHeight);
+
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
+
   const addNewStaff = (newStaff) => {
     setStaffs((prevStaffs) => [...prevStaffs, newStaff]);
   };
@@ -223,6 +227,15 @@ function ManageStaffs(){
   };
 
   useEffect(() => {
+    function handleResize() {
+      setFullHeight(window.innerHeight);
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
     if (isLoggedIn) {
@@ -250,40 +263,52 @@ function ManageStaffs(){
     fetchStaffDetails();
   }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarActive(!isSidebarActive);
+  };
+
   const logout = () => {
     localStorage.removeItem('userToken');
-    localStorage.removeItem('userToken');
+    localStorage.removeItem('userId');
     localStorage.setItem('isLoggedout', 'true');
     navigate('/login');
   };
 
 
   return(
-    <div class="main-dashboard">
-      <ToastContainer/>
-      <div class="left-navigation">
-        <div class="pharmacy-name">
-          Pharmacy Name
+    <div class="wrapper d-flex align-items-stretch">
+    <ToastContainer/>
+			<nav id="sidebar" className={isSidebarActive ? 'active' : ''}>
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary" onClick={toggleSidebar}>
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
         </div>
-        <div class="dashboard-button">
-          <button class="nav-buttons"><Link class="button-links" to="/admin-dashboard">Dashboard</Link></button>
-        </div>
-        <div class="manage-staffs">
-          <button class="nav-buttons"><Link class="button-links" to="/manage-staffs">Manage Staffs</Link></button>
-        </div>
-        <div class="manage-users">
-          <button class="nav-buttons"><Link class="button-links" to="/manage-users">Manage Medicine</Link></button>
-        </div>
-        <div class="manage-products">
-          <button class="nav-buttons"><Link class="button-links" to="/manage-products">Manage Products</Link></button>
-        </div>
-        <div class="admin-profile">
-          <button class="nav-buttons"><Link class="button-links" to="">Admin Profile</Link></button>
-        </div>
-        <div class="logout">
-          <button class="nav-buttons"><Link class="button-links" to="">Logout</Link></button>
-        </div>
-      </div>
+				<div class="p-4">
+		  		<h1><a href="index.html" class="logo">Pharmacy Name <span>Admin Name</span></a></h1>
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+	            <Link to="/admin-dashboard/"><span class="fa fa-home mr-3"></span> Dashboard</Link>
+	          </li>
+	          <li>
+	              <Link to="/manage-staffs/"><span class="fa fa-user mr-3"></span> Manage Users</Link>
+	          </li>
+	          <li>
+              <Link to="/manage-products/"><span class="fa fa-briefcase mr-3"></span> Manage Products</Link>
+	          </li>
+	          <li>
+              <Link to="/manage-medicines/"><span class="fa fa-briefcase mr-3"></span> Manage Medicines</Link>
+	          </li>
+	          <li>
+              <Link to="/admin-profile/"><span class="fa fa-cogs mr-3"></span> User Profile</Link>
+	          </li>
+            <li>
+              <Link to="/login/" onClick={logout}><span class="fa fa-paper-plane mr-3"></span> Logout</Link>
+	          </li>
+	        </ul>
+	      </div>
+    	</nav>
       <div class="content">
         <h1 class="content-header">Manage Staffs</h1>
         <button class="add-staff-btn" onClick={openModal}>Add Staffs</button>

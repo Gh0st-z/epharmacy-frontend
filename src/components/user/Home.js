@@ -27,7 +27,7 @@ function HomePage(){
       draggable: true,
     });
   };
-  
+
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
@@ -50,7 +50,7 @@ function HomePage(){
     localStorage.setItem('isLoggedout', 'true');
     navigate('/login');
   };
-  
+
   return(
     <div id="main-home">
       <ToastContainer/>

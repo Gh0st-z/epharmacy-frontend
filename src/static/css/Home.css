@@ -3,11 +3,11 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+
   h1, h2, h3, h4, h5, h6{
     font-family: 'Ubuntu', sans-serif;
   }
-  
+
   section{
     padding: 60px, 0;
     overflow: hidden;
@@ -56,17 +56,17 @@
   }
 
   .search-container {
-    position: relative; 
+    position: relative;
     margin-left: 20px;
   }
 
   .search-input {
       padding: 10px 20px 10px 40px;
-      font-size: 16px; 
-      border: 2px solid #ddd; 
+      font-size: 16px;
+      border: 2px solid #ddd;
       border-radius: 20px;
-      outline: none; 
-      width: 500px; 
+      outline: none;
+      width: 500px;
   }
 
   .search-button {
@@ -77,12 +77,12 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #000000; 
-    font-size: 20px; 
+    color: #000000;
+    font-size: 20px;
   }
 
   .search-button i {
-      pointer-events: none; 
+      pointer-events: none;
   }
 
   .search-icon {
@@ -95,8 +95,8 @@
   }
 
   .search-input::placeholder {
-      color: #888; 
-      opacity: 1; 
+      color: #888;
+      opacity: 1;
   }
 
   .search-input:focus {
@@ -104,20 +104,20 @@
   }
 
   .upload-pres {
-    background-color: #2f2f2f; 
+    background-color: #2f2f2f;
     color: white;
     padding: 15px 20px;
     font-size: 16px;
     border: none;
     border-radius: 20px;
     font-family: 'Ubuntu', sans-serif;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     display: inline-flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s;
     margin-left: 10px;
     margin-top: 5px;
 }
@@ -131,16 +131,16 @@
 }
 
 .upload-pres:focus {
-    outline: none; 
+    outline: none;
 }
 
 .nav-btn-notif {
   background-color: transparent;
   border: none;
   color: #2f2f2f;
-  cursor: pointer; 
+  cursor: pointer;
   margin: 12px;
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   transition: color 0.3s ease;
   display: flex;
@@ -160,9 +160,9 @@
   background-color: transparent;
   border: none;
   color: #2f2f2f;
-  cursor: pointer; 
+  cursor: pointer;
   margin: 12px;
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   transition: color 0.3s ease;
   display: flex;
@@ -210,10 +210,10 @@
   font-family: 'Ubuntu', sans-serif ;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 120px; 
+  min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  top: 100%; 
+  top: 100%;
   right: 0;
   margin-top: 2px;
 }

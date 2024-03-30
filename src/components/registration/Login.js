@@ -66,11 +66,16 @@ function LoginForm() {
           const userID = response.data.id;
           localStorage.setItem('userId', userID);
           const userRole = response.data.role;
-          if (userRole === 'admin') {
+          const pharmacyExists = response.data.pharmacy_exists;
+          if (userRole === 'admin' && pharmacyExists === 'True') {
+            const pharmacyID = response.data.pharmacy_id;
+            localStorage.setItem('pharmacyID', pharmacyID);
+            navigate('/admin-dashboard');
+          } else if (userRole === 'admin' && pharmacyExists === 'False') {
             navigate('/register-pharma');
           } else if (userRole === 'customer') {
-            navigate('/home'); 
-          } else {
+            navigate('/home')
+          }else{
             console.error('Unexpected user role:', userRole);
             setMessage('Login failed: Unexpected User Role');
             showToast('error', 'Login Failed: Unexpected User Role');
@@ -80,7 +85,7 @@ function LoginForm() {
           console.log(error);
           setMessage('Error occurred during Logging in.');
           showToast('error', 'Incorrect Login Details!');
-        }); 
+        });
       }
   };
 

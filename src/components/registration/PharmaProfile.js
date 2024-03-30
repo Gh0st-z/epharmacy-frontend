@@ -1,6 +1,6 @@
 import React, {lazy, useEffect, useState} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../static/css/PharmaProfile.css'
@@ -15,6 +15,7 @@ import '../../static/vendor/daterangepicker/daterangepicker.css'
 
 function Registerpharma(){
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         pharmacy_name: '',
         license_number: '',
@@ -46,7 +47,7 @@ function Registerpharma(){
             return `http://${window.location.hostname}:8000`;
         }
     };
-    
+
     const API_BASE_URL = getServerIPAddress();
 
     const handleSubmit= async(e) =>{
@@ -81,15 +82,16 @@ function Registerpharma(){
                         console.log(response.data.message);
                         setMessage(response.data.message);
                         showToast('success', 'Account successfully created!');
+                        navigate('/login')
                         setFormKey((prevKey) => prevKey + 1);
                     }).catch(error =>{
                         console.log(error);
                         setMessage('Error occurred during registration.');
                         showToast('error', 'Error occurred during registration.');
-                    }); 
+                    });
                 }
             }
-           
+
         }
     };
 
@@ -112,7 +114,7 @@ function Registerpharma(){
         }));
 
     };
-    
+
     return(
         <div id = 'pharma_reg'>
         <ToastContainer/>

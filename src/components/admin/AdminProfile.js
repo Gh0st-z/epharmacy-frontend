@@ -12,13 +12,23 @@ import '../../static/vendor/animsition/css/animsition.min.css'
 import '../../static/vendor/select2/select2.min.css'
 import '../../static/vendor/daterangepicker/daterangepicker.css'
 
-function AdminDashboard(){
+function AdminProfile(){
 
   const navigate = useNavigate();
 
   const [fullHeight, setFullHeight] = useState(window.innerHeight);
 
   const [isSidebarActive, setIsSidebarActive] = useState(false);
+
+  const getServerIPAddress = () => {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:8000';
+    } else {
+        return `http://${window.location.hostname}:8000`;
+    }
+  };
+
+  const API_BASE_URL = getServerIPAddress();
 
   const showToast = (type, message) => {
     toast[type](message, {
@@ -38,22 +48,6 @@ function AdminDashboard(){
     window.addEventListener('resize', handleResize);
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-    if (isLoggedIn) {
-      toast.success('Logged in Successfully!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      localStorage.removeItem('isLoggedIn');
-    }
   }, []);
 
   const logout = () => {
@@ -95,7 +89,7 @@ function AdminDashboard(){
 	          <li>
               <Link to="/admin-profile/"><span class="fa fa-cogs mr-3"></span> User Profile</Link>
 	          </li>
-	          <li>
+            <li>
               <Link to="/login/" onClick={logout}><span class="fa fa-paper-plane mr-3"></span> Logout</Link>
 	          </li>
 	        </ul>
@@ -107,4 +101,4 @@ function AdminDashboard(){
   );
 }
 
-export default AdminDashboard;
+export default AdminProfile;

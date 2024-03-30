@@ -55,7 +55,7 @@
     color: #3f3f3f;
   }
 
-  .modal {
+  .modal-product {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,10 +68,10 @@
     z-index: 1000;
   }
 
-  .modal-content {
+  .modal-prod-content {
     background: white;
     width: 780px;
-    height: 700px;
+    height: 500px;
     padding: 20px;
     border-radius: 5px;
     position: relative;
@@ -97,9 +97,30 @@
     overflow: hidden;
   }
 
-  .modal-name-input100{
+  .modal-pname-input100{
     display: inline-block;
     width: 30%;
+    margin-top: 10px;
+    margin-right: 120px;
+  }
+
+  .modal-quantity-input100{
+    display: inline-block;
+    width: 30%;
+    margin-top: 10px;
+    margin-right: 120px;
+  }
+
+  .modal-price-input100{
+    display: inline-block;
+    width: 30%;
+    margin-top: 10px;
+    margin-right: 1.5%;
+  }
+
+  .modal-image-input100{
+    display: inline-block;
+    width: 50%;
     margin-top: 10px;
     margin-right: 1.5%;
   }
@@ -117,15 +138,27 @@
     display: block;
   }
 
-  .modal-name-label-input100{
+  .modal-pname-label-input100{
     font-family: 'Ubuntu', sans-serif;
     margin-left: 20px;
     display: block;
   }
 
-  .modal-lname-label-input100{
+  .modal-quantity-label-input100{
     font-family: 'Ubuntu', sans-serif;
-    margin-left: 17px;
+    margin-left: 20px;
+    display: block;
+  }
+
+  .modal-price-label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 28px;
+    display: block;
+  }
+
+  .modal-image-label-input100{
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 28px;
     display: block;
   }
 
@@ -144,8 +177,8 @@
     padding: 0 6px 0 0px;
   }
 
-  .modal-n-input100{
-    width: 200px;
+  .modal-pn-input100{
+    width: 300px;
     border: none;
     font-family: 'Ubuntu', sans-serif;
     border-bottom: 2px solid #8d908e;
@@ -159,8 +192,8 @@
     padding: 0 6px 0 0px;
   }
 
-  .modal-ln-input100{
-    width: 210px;
+  .modal-pr-input100{
+    width: 320px;
     border: none;
     font-family: 'Ubuntu', sans-serif;
     border-bottom: 2px solid #8d908e;
@@ -170,11 +203,40 @@
     display: block;
     height: 40px;
     background: transparent;
-    margin-left: 17px;
+    margin-left: 30px;
     padding: 0 6px 0 0px;
   }
 
-  .create-staff{
+  .modal-qy-input100{
+    width: 300px;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    border-bottom: 2px solid #8d908e;
+    transition: border-color 0.3s;
+    outline: none;
+    line-height: 1.2;
+    display: block;
+    height: 40px;
+    background: transparent;
+    margin-left: 25px;
+    padding: 0 6px 0 0px;
+  }
+
+  .modal-im-input100{
+    width: 300px;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    transition: border-color 0.3s;
+    outline: none;
+    display: block;
+    height: 70px;
+    margin-top: 8px;
+    background: transparent;
+    margin-left: 30px;
+    padding: 0 6px 0 0px;
+  }
+
+  .create-product{
     font-family: 'Ubuntu', sans-serif;
     width: 200px;
     height: 40px;
@@ -188,7 +250,7 @@
     transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   }
 
-  .create-staff:hover{
+  .create-product:hover{
     background-color: rgba(79, 157, 218, 0.25);
   }
 
