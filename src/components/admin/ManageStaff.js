@@ -332,7 +332,7 @@ function ManageStaffs(){
                   <td>{staff.email}</td>
                   <td>{staff.address}</td>
                   <td>{staff.phone_number}</td>
-                  <td><button></button><button></button></td>
+                  <td><button className="editbutton" aria-label="Edit"><i className="fas fa-pencil-alt"></i></button><button className="deletebutton" aria-label="Delete"><i className="fas fa-trash"></i></button></td>
                 </tr>
               ))}
             </tbody>

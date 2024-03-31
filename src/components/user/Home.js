@@ -52,50 +52,18 @@ function HomePage(){
   };
 
   return(
-    <div id="main-home">
+    <div className="main-home">
       <ToastContainer/>
-      <div id="ecom-head-nav">
-        <div id="head-nav-link">
-          <img src={companylogo} alt="Company Logo" className="logo-img"/>
-          <button class="nav-btn"><Link class="nav-link">Browse</Link></button>
-          <button class="nav-btn"><Link class="nav-link">Brands</Link></button>
-          <div class="search-container">
-            <form action="/search" method="get">
-              <input type="text" placeholder="Search for Medications, Products, and Items..." name="search" class="search-input"/>
-              <button type="submit" class="search-button">
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <button class="upload-pres">
-            <i class="fa fa-camera" aria-hidden="true"></i>
-            Upload Prescriptions
-          </button>
-          <button class="nav-btn-notif">
-            <i class="fa fa-bell" aria-hidden="true"></i>
-            Notifications
-          </button>
-          <button class="nav-btn-cart">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            Cart
-          </button>
-          <div className="user-menu">
-            <i className="fa fa-user" aria-hidden="true"></i>
-            <button className="account-btn">
-              <i className="fa fa-caret-down"></i>
-            </button>
-            <div className="dropdown-content">
-              <Link class="drpdwn-link">Profile</Link>
-              <Link class="drpdwn-link">Orders</Link>
-              <Link class="drpdwn-link">Settings</Link>
-              <button class="drpdwn-link" onClick={logout}>Logout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="ecom-body">
-
-      </div>
+      <nav className="navigation-bar">
+        <div className="logo">YOUR LOGO</div>
+        <ul className="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/signup" className="signup-btn">Sign Up</a></li>
+        </ul>
+      </nav>
     </div>
   );
 }

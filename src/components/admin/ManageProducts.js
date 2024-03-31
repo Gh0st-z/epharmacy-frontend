@@ -286,7 +286,7 @@ function ManageProducts(){
                   <td>{product.price}</td>
                   <td>{product.product_info}</td>
                   <td>{product.quantity}</td>
-                  <td><button></button><button></button></td>
+                  <td><button className="editbutton" aria-label="Edit"><i className="fas fa-pencil-alt"></i></button><button className="deletebutton" aria-label="Delete"><i className="fas fa-trash"></i></button></td>
                 </tr>
               ))}
             </tbody>
