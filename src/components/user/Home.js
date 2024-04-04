@@ -52,18 +52,24 @@ function HomePage(){
   };
 
   return(
-    <div className="main-home">
+    <div>
       <ToastContainer/>
-      <nav className="navigation-bar">
-        <div className="logo">YOUR LOGO</div>
-        <ul className="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/signup" className="signup-btn">Sign Up</a></li>
-        </ul>
-      </nav>
+      <div class='nav-div'>
+        <div class='logo'>
+          <img src={companylogo}/>
+        </div>
+        <div class="search-bar">
+          <form  class="search-form">
+            <button type="submit" class="search-button">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+            <input type="text" class="search-input" placeholder="Search..."/>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

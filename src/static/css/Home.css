@@ -13,66 +13,61 @@
     overflow: hidden;
   }
 
-  .main-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-  }
-
-  .navigation-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .nav-div{
     width: 100%;
-  }
-
-  .nav-links {
-    list-style: none;
     display: flex;
   }
 
-  .nav-links li a {
-    text-decoration: none;
-    padding: 10px;
-    color: #333;
+  .logo{
+    height: 80px;
+    width: 210px;
+    margin-left: 40px;
+    margin-top: 5px;
   }
 
-  .signup-btn {
-    background-color: #008cba;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+  .logo img{
+    height: 50px;
+    margin: 10px;
+    width: 190px;
+    display: inline-block;
+    position: relative;
   }
 
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
+  .search-bar{
+    width: 450px;
+    height: 35px;
+    margin-left: 250px;
+    margin-top: 30px;
+    border: 1px solid;
+    border-radius: 100px;
+    display: inline-block;
+    position: relative;
   }
 
-  .header-text h1 {
-    color: #333;
-    font-size: 2em;
-  }
-
-  .header-text p {
-    color: #666;
-    margin: 10px 0;
-  }
-
-  .get-started-btn {
-    background-color: #22b573;
-    color: white;
+  .search-button{
+    width: 25px;
+    background: none;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
   }
 
-  .header-image {
-    /* You would include styles for your image here */
+  .search-icon{
+    width: 17px;
+    margin-left: 10px;
+    margin-bottom: 3px;
+  }
+
+  .search-input{
+    border: none;
+    width: 370px;
+    height: 25px;
+    margin-left: 15px;
+    margin-top: 4px;
+  }
+
+  .search-input:focus{
+    outline: none;
+  }
+
+  .search-input:focus::placeholder{
+    color: transparent;
   }
