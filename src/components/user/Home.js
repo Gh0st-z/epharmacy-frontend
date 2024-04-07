@@ -16,6 +16,7 @@ import '../../static/vendor/daterangepicker/daterangepicker.css'
 function HomePage(){
 
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const showToast = (type, message) => {
     toast[type](message, {
@@ -26,6 +27,13 @@ function HomePage(){
       pauseOnHover: true,
       draggable: true,
     });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userToken');
+    localStorage.setItem('isLoggedout', 'true');
+    showToast('success', 'Logged out Successfully!');
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -44,17 +52,10 @@ function HomePage(){
     }
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userToken');
-    localStorage.setItem('isLoggedout', 'true');
-    navigate('/login');
-  };
-
   return(
     <div>
       <ToastContainer/>
-      <div class='nav-div'>
+      <div class='top-div'>
         <div class='logo'>
           <img src={companylogo}/>
         </div>
@@ -68,6 +69,46 @@ function HomePage(){
             </button>
             <input type="text" class="search-input" placeholder="Search..."/>
           </form>
+        </div>
+        <div class="user-icons">
+          <button className="notif-button">
+            <i className="fa fa-bell"></i>
+          </button>
+          <button className="cart-button">
+            <i className="fa fa-shopping-cart"></i>
+          </button>
+          <div className="user-dropdown">
+            <button className="user-button" onClick={() => setShowDropdown(!showDropdown)}>
+              <i className="fa fa-user-circle" style={{ border: '2px solid #fff', borderRadius: '50%' }}></i>
+              <i className="fa fa-caret-down"></i>
+            </button>
+            {showDropdown && (
+              <div className="dropdown-content">
+                <Link to="/user-profile/">User Profile</Link>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div class='nav-div'>
+        <div class='home-btn'>
+          <Link to="/home/"><span class='home-span'>Home</span></Link>
+        </div>
+        <div class='product-btn'>
+          <Link to="/product/"><span class='product-span'>Products</span></Link>
+        </div>
+        <div class='bmi-btn'>
+          <Link to="/bmi/"><span class='bmi-span'>BMI Calculator</span></Link>
+        </div>
+        <div class='reminder-btn'>
+          <Link to="/set-reminder/"><span class='reminder-span'>Set Reminder</span></Link>
+        </div>
+        <div class='family-btn'>
+          <Link to="/family-profile/"><span class='family-span'>Family Profile</span></Link>
+        </div>
+        <div class='diet-btn'>
+          <Link to="/diet-consult/"><span class='diet-span'>Diet Consultation</span></Link>
         </div>
       </div>
     </div>
