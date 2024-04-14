@@ -8131,3 +8131,35 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   background: #3b4ec6; }
+
+
+  #content {
+    background: #f8f9fa;
+    margin-left: 40px; /* Adjust this value based on the width of your sidebar */
+  }
+
+  #content h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  #content .form-group {
+    margin-bottom: 1rem;
+  }
+
+  #content .form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+  }
+
+  #content .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  @media (max-width: 768px) {
+    #content {
+      margin-left: 0;
+    }
+  }

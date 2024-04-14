@@ -88,7 +88,6 @@ const AddMedicineModal = ({ show, onClose }) => {
         console.log(response.data.message);
         setMessage(response.data.message);
         showToast('success', 'Product sucessfully Added!');
-        setFormKey((prevKey) => prevKey + 1);
       }).catch(error =>{
         console.log(error);
         setMessage('Error occurred during registration.');
@@ -133,12 +132,88 @@ const AddMedicineModal = ({ show, onClose }) => {
   );
 };
 
-function ManageMedicines(){
+const EditMedicineModal = ({ show, onClose, product, onUpdateProduct }) => {
+  const [formData, setFormData] = useState({
+    product_name: '',
+    product_info: '',
+    price: '',
+    quantity: '',
+    product_image: '',
+  });
 
+  useEffect(() => {
+    if (product) {
+      setFormData({
+        product_name: product.product_name || '',
+        product_info: product.product_info || '',
+        price: product.price || '',
+        quantity: product.quantity || '',
+      });
+    }
+  }, [product]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    onUpdateProduct({
+      ...formData,
+    }, localStorage.setItem('productID', product.product_id));
+  };
+
+  if (!show) return null;
+
+  return (
+    <div className="modal-product" onClick={onClose}>
+      <div className="modal-prod-content" onClick={e => e.stopPropagation()}>
+        <span className="close-button" onClick={onClose}>&times;</span>
+        <h2 class="form-head">Edit Medications</h2>
+        <form action="" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
+          <div class="modal-pname-input100">
+            <span class="modal-pname-label-input100">Medicine Name: </span>
+            <input class="modal-pn-input100" type="text" name="product_name" value={formData.product_name} onChange={handleInputChange}/>
+          </div>
+          <div class="modal-price-input100">
+            <span class="modal-price-label-input100">Price: </span>
+            <input class="modal-pr-input100" type="text" name="price" value={formData.price} onChange={handleInputChange}/>
+          </div>
+          <div class="modal-wrap-input100">
+            <span class="modal-label-input100">Medicine Info: </span>
+            <input class="modal-input100" type="text" name="product_info" value={formData.product_info} onChange={handleInputChange}/>
+          </div>
+          <div class="modal-quantity-input100">
+            <span class="modal-quantity-label-input100">Quantity:</span>
+            <input class="modal-qy-input100" type="text" name="quantity" value={formData.quantity} onChange={handleInputChange}/>
+          </div>
+          <div class="modal-image-input100">
+            <span class="modal-image-label-input100">Medicine Image: </span>
+            <input class="modal-im-input100" type="file" name="product_image" value={formData.product_image} onChange={handleInputChange}/>
+          </div>
+          <div class="wrap-input100">
+            <button class="create-product">Add Medicine</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+function ManageMedicines(){
 
     const navigate = useNavigate();
 
     const [showAddMedicineModal, setShowAddMedicineModal] = useState(false);
+
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const [showEditMedicineModal, setShowEditMedicineModal] = useState(false);
 
     const [products, setProducts] = useState([]);
 
@@ -161,8 +236,15 @@ function ManageMedicines(){
       setShowAddMedicineModal(true);
     };
 
+    const handleEditClick = (product) => {
+      document.body.classList.add('body-no-scroll');
+      setSelectedProduct(product);
+      setShowEditMedicineModal(true);
+    };
+
     const closeModal = () => {
       document.body.classList.remove('body-no-scroll');
+      setShowEditMedicineModal(false);
       setShowAddMedicineModal(false);
     };
 
@@ -203,21 +285,48 @@ function ManageMedicines(){
       }
     }, []);
 
-    useEffect(() =>{
-      const fetchStaffDetails = async () => {
-        try{
-          const response = await axios.get(API_BASE_URL + '/product/get-medicine/', {
-            params:{
-              pharmacy: localStorage.getItem('pharmacyID'),
-            },
-          });
-          setProducts(response.data);
-        }catch(error) {
-          console.error('Failed to fetch staff details: ', error);
-        }
-      };
-      fetchStaffDetails();
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(API_BASE_URL + '/product/get-medicine/', {
+          params: {
+            pharmacy: localStorage.getItem('pharmacyID'),
+          },
+        });
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Failed to fetch products: ', error);
+      }
+    };
+
+    useEffect(() => {
+      fetchProducts();
     }, []);
+
+    const onUpdateProduct = async (updatedProduct) => {
+      const productID = localStorage.getItem('productID');
+      try {
+        const response = await axios.put(`${API_BASE_URL}/product/update-medicine/${productID}/`, updatedProduct);
+        setShowEditMedicineModal(false);
+        showToast('success', 'Product updated successfully!');
+        fetchProducts();
+      } catch (error) {
+        showToast('error', 'Error occurred while updating product!');
+        console.error('Error occurred while updating product:', error);
+      }
+    };
+
+    const handleDeleteProduct = async (productID) => {
+      if (window.confirm('Are you sure you want to delete this product?')) {
+        try {
+          const response = await axios.delete(`${API_BASE_URL}/product/delete-product/${productID}/`);
+          showToast('success', 'Medicine deleted successfully!');
+          fetchProducts();
+        } catch (error) {
+          showToast('error', 'Error occurred while deleting the product.');
+          console.error('Error occurred while deleting the product:', error);
+        }
+      }
+    };
 
     const logout = () => {
       localStorage.removeItem('userToken');
@@ -287,7 +396,11 @@ function ManageMedicines(){
                     <td>{product.price}</td>
                     <td>{product.product_info}</td>
                     <td>{product.quantity}</td>
-                    <td><button className="editbutton" aria-label="Edit"><i className="fas fa-pencil-alt"></i></button><button className="deletebutton" aria-label="Delete"><i className="fas fa-trash"></i></button></td>
+                    <td>
+                      <button className="btn btn-sm btn-primary mr-2"  onClick={() => handleEditClick(product)} aria-label="Edit"><i className="fas fa-pencil-alt"></i></button>
+                      <EditMedicineModal show={showEditMedicineModal} onClose={closeModal} product={selectedProduct}  onUpdateProduct={onUpdateProduct}/>
+                      <button className="btn btn-sm btn-danger" aria-label="Delete" onClick={() => handleDeleteProduct(product.product_id)}><i className="fas fa-trash"></i></button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

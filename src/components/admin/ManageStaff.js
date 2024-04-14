@@ -132,9 +132,13 @@ const AddStaffModal = ({ show, onClose, addNewStaff }) => {
     onClose();
   };
 
+  if (!show) {
+    return null;
+  }
+
   return (
-    <div className="modal" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <div className="modal-staff" onClick={onClose}>
+      <div className="modal-staff-content" onClick={e => e.stopPropagation()}>
         <span className="close-button" onClick={onClose}>&times;</span>
         <h2 class="form-head">Add Staff</h2>
         <form action="" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
@@ -312,7 +316,7 @@ function ManageStaffs(){
       <div class="content">
         <h1 class="content-header">Manage Staffs</h1>
         <button class="add-staff-btn" onClick={openModal}>Add Staffs</button>
-        <AddStaffModal show={showAddStaffModal} onClose={closeModal} addNewStaff={addNewStaff}/>
+        <AddStaffModal show={showAddStaffModal} onClose={closeModal} addNewStaff={addNewStaff} />
         <table>
             <thead>
                 <tr>
@@ -332,7 +336,10 @@ function ManageStaffs(){
                   <td>{staff.email}</td>
                   <td>{staff.address}</td>
                   <td>{staff.phone_number}</td>
-                  <td><button className="editbutton" aria-label="Edit"><i className="fas fa-pencil-alt"></i></button><button className="deletebutton" aria-label="Delete"><i className="fas fa-trash"></i></button></td>
+                  <td>
+                    <button className="btn btn-sm btn-primary mr-2" aria-label="Edit"><i className="fas fa-pencil-alt"></i></button>
+                    <button className="btn btn-sm btn-danger" aria-label="Delete"><i className="fas fa-trash"></i></button>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -55,7 +55,7 @@
     color: #3f3f3f;
   }
 
-  .modal {
+  .modal-staff {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,7 +68,7 @@
     z-index: 1000;
   }
 
-  .modal-content {
+  .modal-staff-content {
     background: white;
     width: 780px;
     height: 700px;
