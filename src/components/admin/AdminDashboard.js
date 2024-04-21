@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
-import '../../static/css/AdminDashboard.css'
+import '../../static/css/dashboard-style.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../static/fonts/iconic/css/material-design-iconic-font.min.css'

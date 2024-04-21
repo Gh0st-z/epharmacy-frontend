@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import '../../static/css/ManageProducts.css'
+import '../../static/css/dashboard-style.css'
+import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../static/fonts/iconic/css/material-design-iconic-font.min.css'

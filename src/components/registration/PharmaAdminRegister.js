@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../../static/css/PharmaRegister.css'
+import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../static/fonts/iconic/css/material-design-iconic-font.min.css'
@@ -25,7 +25,7 @@ function RegisterPharmaAdmin(){
         password: '',
         role: 'admin'
     });
-    
+
     const [passData, setPassData] = useState({
         password2: '',
     });
@@ -50,7 +50,7 @@ function RegisterPharmaAdmin(){
             return `http://${window.location.hostname}:8000`;
         }
     };
-    
+
     const API_BASE_URL = getServerIPAddress();
 
     const handleSubmit= async(e) =>{
@@ -92,10 +92,10 @@ function RegisterPharmaAdmin(){
                         console.log(error);
                         setMessage('Error occurred during registration.');
                         showToast('error', 'Error occurred during registration.');
-                    }); 
+                    });
                 }
             }
-           
+
         }
     };
 
@@ -126,7 +126,7 @@ function RegisterPharmaAdmin(){
             [name]: value,
         }));
     }
-    
+
     return(
         <div id = 'pharma_reg'>
         <ToastContainer/>
@@ -167,9 +167,6 @@ function RegisterPharmaAdmin(){
                     <span class="pharma-label-input100">Confirm Password: </span>
                     <input class="pharma-input100" type="password" name="password2" placeholder="Re-Enter your password" onChange={handlePassValidation}/>
                     <span class="pharma-focus-input100" data-symbol="&#xf190;"></span>
-                </div>
-                <div class="caps-lock-warning">
-                    <p>Caps Lock is enabled.</p>
                 </div>
                 <div class="pharma-wrap-input100">
                     <button class="pharma-register-btn">Create</button>

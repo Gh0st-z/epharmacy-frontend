@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, redirect, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import '../../static/css/Login.css'
+import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
 import '../../static/fonts/iconic/css/material-design-iconic-font.min.css'
@@ -74,7 +74,7 @@ function LoginForm() {
           } else if (userRole === 'admin' && pharmacyExists === 'False') {
             navigate('/register-pharma');
           } else if (userRole === 'customer') {
-            navigate('/home')
+            window.location.href = 'http://localhost:8000/home/';
           }else{
             console.error('Unexpected user role:', userRole);
             setMessage('Login failed: Unexpected User Role');
@@ -113,9 +113,6 @@ function LoginForm() {
             <span class="label-input100">Password: </span>
             <input class="input100" type="password" name="password" placeholder="Enter your password" onChange={handleInputChange}/>
             <span class="focus-input100" data-symbol="&#xf190;"></span>
-          </div>
-          <div class="caps-lock-warning">
-            <p>Caps Lock is enabled.</p>
           </div>
           <a href="#" id="for-pass">Forgot Password?</a>
           <div class="wrap-input100">

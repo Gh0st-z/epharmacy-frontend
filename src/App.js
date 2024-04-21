@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import LoginForm  from './components/registration/Login';
 import Registerform  from './components/registration/Register';
-import HomePage  from './components/user/Home';
 import Registerpharma from './components/registration/PharmaProfile';
 import RegisterPharmaAdmin from './components/registration/PharmaAdminRegister';
 import AdminDashboard from './components/admin/AdminDashboard';
@@ -19,7 +18,6 @@ function App() {
         <Route path='/' element={<Navigate replace to = "/login"/>}/>
         <Route path="login/" element={<LoginForm />} />
         <Route path="register/" element={<Registerform />} />
-        <Route path="home/" element={<HomePage/>} />
         <Route path="register-admin/" element={<RegisterPharmaAdmin/>} />
         <Route path="register-pharma/" element={<Registerpharma/>}/>
         <Route path="admin-dashboard/" element={<AdminDashboard/>}/>
