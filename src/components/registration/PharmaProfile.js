@@ -2,6 +2,7 @@ import React, {lazy, useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
@@ -24,7 +25,7 @@ function Registerpharma(){
         pharmacy_type: '',
         pharmacy_logo: '',
         website_url: '',
-        admin_id: localStorage.getItem('userId'),
+        admin_id: Cookies.get('userId'),
     });
 
     const [formKey, setFormKey] = useState(0);

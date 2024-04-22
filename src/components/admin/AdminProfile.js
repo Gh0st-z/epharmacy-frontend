@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import '../../static/css/dashboard-style.css'
 import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
@@ -54,15 +55,15 @@ function AdminProfile(){
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userId');
-    localStorage.setItem('isLoggedout', 'true');
+    Cookies.remove('userToken');
+    Cookies.remove('userId');
+    Cookies.set('isLoggedout', 'true', { expires: 1/24, path: '/' });
     navigate('/login');
   };
 
   useEffect(() =>{
     const fetchAdminDetails = async () => {
-      const userId = localStorage.getItem('userId');
+      const userId = Cookies.get('userId');
       if (!userId) {
         console.error('No user ID found in local storage.');
         return;
@@ -92,7 +93,7 @@ function AdminProfile(){
     e.preventDefault(); // Prevents the default form submission action
 
     // Retrieve the UUID from local storage
-    const userId = localStorage.getItem('userId');
+    const userId = Cookies.get('userId');
     if (!userId) {
       console.error('No user ID found in local storage.');
       return;

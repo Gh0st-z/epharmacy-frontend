@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
+import Cookies from 'js-cookie';
 import '../../static/css/dashboard-style.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
@@ -45,7 +46,7 @@ function AdminDashboard(){
   }, []);
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const isLoggedIn = Cookies.get('isLoggedIn') === 'true';
 
     if (isLoggedIn) {
       toast.success('Logged in Successfully!', {
@@ -56,14 +57,14 @@ function AdminDashboard(){
         pauseOnHover: true,
         draggable: true,
       });
-      localStorage.removeItem('isLoggedIn');
+      Cookies.remove('isLoggedIn');
     }
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userId');
-    localStorage.setItem('isLoggedout', 'true');
+    Cookies.remove('userToken');
+    Cookies.remove('userId');
+    Cookies.set('isLoggedout', 'true', { expires: 1/24, path: '/' });
     navigate('/login');
   };
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, redirect, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
 import '../../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
@@ -34,8 +35,8 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    const isLoggedout = localStorage.getItem('isLoggedout') === 'true';
-
+    const isLoggedout = Cookies.get('isLoggedout') === 'true';
+    
     if (isLoggedout) {
       toast.success('Logged out Successfully!', {
         position: 'top-center',
@@ -45,48 +46,44 @@ function LoginForm() {
         pauseOnHover: true,
         draggable: true,
       });
-      localStorage.removeItem('isLoggedout');
+      Cookies.set('isLoggedout', 'true', { expires: 1/24 });
     }
   }, []);
 
-  const handleSubmit= (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !formData.email.trim() ||
-      !formData.password.trim()
-      ){
-        showToast('error', 'Please fill in all fields.');
-      }
-      else{
-        axios.post('http://localhost:8000/autho/login/', formData)
-        .then(response => {
-          setMessage(response.data.message);
-          showToast('success', 'Login Successful');
-          localStorage.setItem('isLoggedIn', 'true');
-          const userID = response.data.id;
-          localStorage.setItem('userId', userID);
-          const userRole = response.data.role;
-          const pharmacyExists = response.data.pharmacy_exists;
-          if (userRole === 'admin' && pharmacyExists === 'True') {
-            const pharmacyID = response.data.pharmacy_id;
-            localStorage.setItem('pharmacyID', pharmacyID);
-            navigate('/admin-dashboard');
-          } else if (userRole === 'admin' && pharmacyExists === 'False') {
-            navigate('/register-pharma');
-          } else if (userRole === 'customer') {
-            window.location.href = 'http://localhost:8000/home/';
-          }else{
-            console.error('Unexpected user role:', userRole);
-            setMessage('Login failed: Unexpected User Role');
-            showToast('error', 'Login Failed: Unexpected User Role');
-          }
-          setFormKey((prevKey) => prevKey + 1);
-        }).catch(error =>{
-          console.log(error);
-          setMessage('Error occurred during Logging in.');
-          showToast('error', 'Incorrect Login Details!');
-        });
-      }
+    if (!formData.email.trim() || !formData.password.trim()) {
+      showToast('error', 'Please fill in all fields.');
+    } else {
+      axios.post('http://localhost:8000/autho/login/', formData)
+      .then(response => {
+        setMessage(response.data.message);
+        showToast('success', response.data.message);
+        Cookies.set('isLoggedIn', 'true', { expires: 1, secure: true, sameSite: 'Strict' }); // expires in 1 day
+        const userID = response.data.id;
+        Cookies.set('userId', userID, { expires: 1, secure: true, sameSite: 'Strict' });
+        const userRole = response.data.role;
+        const pharmacyExists = response.data.pharmacy_exists;
+        if (userRole === 'admin' && pharmacyExists === 'True') {
+          const pharmacyID = response.data.pharmacy_id;
+          Cookies.set('pharmacyID', pharmacyID, { expires: 1, secure: true, sameSite: 'Strict' });
+          navigate('/admin-dashboard');
+        } else if (userRole === 'admin' && pharmacyExists === 'False') {
+          navigate('/register-pharma');
+        } else if (userRole === 'customer') {
+          window.location.href = 'http://localhost:8000/home/';
+        } else {
+          console.error('Unexpected user role:', userRole);
+          setMessage('Login failed: Unexpected User Role');
+          showToast('error', 'Login Failed: Unexpected User Role');
+        }
+        setFormKey(prevKey => prevKey + 1);
+      }).catch(error => {
+        console.log(error);
+        setMessage('Error occurred during Logging in.');
+        showToast('error', 'Incorrect Login Details!');
+      });
+    }
   };
 
   const handleInputChange = (e) => {

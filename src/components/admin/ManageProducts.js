@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import '../../static/css/dashboard-style.css'
 import '../../static/css/styles.css'
 import '../../static/vendor/bootstrap/css/bootstrap.min.css'
@@ -21,7 +22,7 @@ const AddProductModal = ({ show, onClose }) => {
     quantity: '',
     product_type: 'product',
     product_image: '',
-    pharmacy: localStorage.getItem('pharmacyID'),
+    pharmacy: Cookies.get('pharmacyID'),
   });
 
   const [message, setMessage] = useState('');
@@ -167,7 +168,7 @@ const EditProductModal = ({ show, onClose, product, onUpdateProduct }) => {
 
     onUpdateProduct({
       ...formData,
-    }, localStorage.setItem('productID', product.product_id));
+    }, Cookies.set('productID', product.product_id, { expires: 7, secure: true, sameSite: 'Strict' }));
   };
 
   // Return null to render nothing if the modal is not shown
@@ -271,28 +272,11 @@ function ManageProducts(){
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-    if (isLoggedIn) {
-      toast.success('Logged in Successfully!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      localStorage.removeItem('isLoggedIn');
-    }
-  }, []);
-
   const fetchProducts = async () => {
     try {
       const response = await axios.get(API_BASE_URL + '/product/get-product/', {
         params: {
-          pharmacy: localStorage.getItem('pharmacyID'),
+          pharmacy: Cookies.get('pharmacyID'),
         },
       });
       setProducts(response.data);
@@ -306,7 +290,7 @@ function ManageProducts(){
   }, []);
 
   const onUpdateProduct = async (updatedProduct) => {
-    const productID = localStorage.getItem('productID');
+    const productID = Cookies.get('productID');
     try {
       const response = await axios.put(`${API_BASE_URL}/product/update-product/${productID}/`, updatedProduct);
       setShowEditProductModal(false);
@@ -332,9 +316,9 @@ function ManageProducts(){
 
 
   const logout = () => {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userId');
-    localStorage.setItem('isLoggedout', 'true');
+    Cookies.remove('userToken');
+    Cookies.remove('userId');
+    Cookies.set('isLoggedout', 'true', { expires: 1/24, path: '/' });
     navigate('/login');
   };
 
