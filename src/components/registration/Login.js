@@ -36,7 +36,7 @@ function LoginForm() {
 
   useEffect(() => {
     const isLoggedout = Cookies.get('isLoggedout') === 'true';
-    
+
     if (isLoggedout) {
       toast.success('Logged out Successfully!', {
         position: 'top-center',
@@ -51,19 +51,26 @@ function LoginForm() {
   }, []);
 
   const handleSubmit = (e) => {
+    const csrfToken = Cookies.get('csrftoken');
     e.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
       showToast('error', 'Please fill in all fields.');
     } else {
-      axios.post('http://localhost:8000/autho/login/', formData)
+      axios.post('http://localhost:8000/autho/login/', formData, {
+        headers: {
+          'X-CSRFToken': csrfToken,
+        }
+      })
       .then(response => {
-        setMessage(response.data.message);
         showToast('success', response.data.message);
-        Cookies.set('isLoggedIn', 'true', { expires: 1, secure: true, sameSite: 'Strict' }); // expires in 1 day
         const userID = response.data.id;
-        Cookies.set('userId', userID, { expires: 1, secure: true, sameSite: 'Strict' });
         const userRole = response.data.role;
         const pharmacyExists = response.data.pharmacy_exists;
+        const access_token = response.data.access;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+        Cookies.set('access_token', access_token, { expires: 1, secure: true, sameSite: 'Strict' })
+        Cookies.set('isLoggedIn', 'true', { expires: 1, secure: true, sameSite: 'Strict' });
+        Cookies.set('userId', userID, { expires: 1, secure: true, sameSite: 'Strict' });
         if (userRole === 'admin' && pharmacyExists === 'True') {
           const pharmacyID = response.data.pharmacy_id;
           Cookies.set('pharmacyID', pharmacyID, { expires: 1, secure: true, sameSite: 'Strict' });
@@ -73,7 +80,6 @@ function LoginForm() {
         } else if (userRole === 'customer') {
           window.location.href = 'http://localhost:8000/home/';
         } else {
-          console.error('Unexpected user role:', userRole);
           setMessage('Login failed: Unexpected User Role');
           showToast('error', 'Login Failed: Unexpected User Role');
         }
